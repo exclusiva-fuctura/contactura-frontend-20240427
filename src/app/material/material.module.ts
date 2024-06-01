@@ -48,6 +48,12 @@ export const DATE_FORMATS = {
   ],
   exports: [
     material
+  ],
+  providers: [
+    MatIconRegistry,
+    DefaultMatCalendarRangeStrategy,
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    {provide: MAT_DATE_FORMATS, useValue: DATE_FORMATS},
   ]
 })
 export class MaterialModule { }
