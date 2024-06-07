@@ -11,7 +11,7 @@ export class UsuarioService {
   ) { }
 
   get usuarioLogado(): boolean {
-    return true; 
+    return this.token && this.token.length > 10 ? true : false; 
   }
 
   get token(): string {

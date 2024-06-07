@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IDespesa } from 'src/app/shared/models/despesa.interface';
 
 @Component({
   selector: 'app-despesas',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class DespesasComponent {
 
+  dataSource: IDespesa[] = [];
+  displayedColumns = ['data','valor','tipo','fixo','descricao','acoes'];
 }

@@ -9,6 +9,10 @@ import { MenuTypeEnum } from '../shared/enums/menu-type.enum';
 })
 export class DashboardComponent {
 
+  dataSourceDespesas: any[] = [];
+  dataSourceReceitas: any[] = [];
+  displayedColumns = ['data','valor','tipo','fixo','descricao','acoes'];
+  
   constructor(
     private menuService: MenuService,
   ) {
