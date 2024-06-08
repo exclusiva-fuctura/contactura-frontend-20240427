@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -21,6 +22,7 @@ export const material = [
   MatTableModule,
   MatButtonModule,
   MatSelectModule,
+  MatTooltipModule,
   MatGridListModule,
   MatPaginatorModule,
   MatDatepickerModule,

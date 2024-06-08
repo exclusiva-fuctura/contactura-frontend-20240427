@@ -20,6 +20,7 @@ import { LogoutComponent } from './components/logout/logout.component';
   ],
   exports: [
     MenuComponent,
+    LogoutComponent,
     LoadingComponent
   ]
 })

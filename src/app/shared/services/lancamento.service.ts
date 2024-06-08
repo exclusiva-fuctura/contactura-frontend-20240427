@@ -3,10 +3,10 @@ import { HttpResponse } from '@angular/common/http';
 // libs
 import { Observable } from 'rxjs';
 // services
-import { AppState } from 'src/app/app.state';
+import { AppState } from '../../app.state';
 import { DaoService } from './dao.service';
 // systems
-import { AppSettings } from 'src/app/app.settings';
+import { AppSettings } from '../../app.settings';
 import { OperacaoTypeEnum } from '../enums/operacao-type.enum';
 // models
 import { IReceita } from '../models/receita.interface';
