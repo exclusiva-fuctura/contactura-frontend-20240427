@@ -30,11 +30,11 @@
     </mat-menu>
   
     <mat-menu #lancamentos="matMenu">
-      <button mat-menu-item (click)="onNavigate('lancamentos/receita')" [disabled]="estouLancamentoReceita">
+      <button mat-menu-item (click)="onNavigate('lancamentos/receitas')" [disabled]="estouLancamentoReceita">
         <mat-icon fontIcon="paid"></mat-icon>
         <span>Lançamento de Receitas</span>
       </button>
-      <button mat-menu-item (click)="onNavigate('lancamentos/despesa')" [disabled]="estouLancamentoDespesa">
+      <button mat-menu-item (click)="onNavigate('lancamentos/despesas')" [disabled]="estouLancamentoDespesa">
         <mat-icon fontIcon="shopping_bag"></mat-icon>
         <span>Lançamento de Despesas</span>
       </button>

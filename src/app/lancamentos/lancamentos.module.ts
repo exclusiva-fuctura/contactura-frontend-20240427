@@ -6,6 +6,7 @@ import { DespesasComponent } from './despesas/despesas.component';
 import { ReceitasComponent } from './receitas/receitas.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,6 +16,9 @@ import { MaterialModule } from '../material/material.module';
   ],
   imports: [
     CommonModule,
+    SharedModule,
+    MaterialModule,
+    ReactiveFormsModule,
     LancamentosRoutingModule
   ]
 })

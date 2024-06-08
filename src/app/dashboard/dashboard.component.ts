@@ -5,6 +5,7 @@ import { IReceita } from '../shared/models/receita.interface';
 import { LancamentoService } from '../shared/services/lancamento.service';
 import Swal from 'sweetalert2';
 import { IDespesa } from '../shared/models/despesa.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +21,7 @@ export class DashboardComponent {
   mostrarLoading = false;
 
   constructor(
+    private router: Router,
     private menuService: MenuService,
     private lancamentoService: LancamentoService
   ) {
@@ -38,15 +40,19 @@ export class DashboardComponent {
     }
   }
 
-  onEditDespesa(elemeto: IDespesa): void {
-    if(elemeto.id) {
-      
+  onEditDespesa(elemento: IDespesa): void {
+    if(elemento.id) {
+      this.lancamentoService.despesaSelecionada = elemento;
+      this.lancamentoService.modoEdicao = true;
+      this.router.navigate(['lancamentos/despesas']);
     }
   }
 
-  onEditReceita(elemeto: IReceita): void {
-    if(elemeto.id) {
-      
+  onEditReceita(elemento: IReceita): void {
+    if(elemento.id) {
+      this.lancamentoService.receitaSelecionada = elemento;
+      this.lancamentoService.modoEdicao = true;
+      this.router.navigate(['lancamentos/receitas']);
     }
   }
 
@@ -100,53 +106,7 @@ export class DashboardComponent {
     })
   }
   
-  private editarDespesa(elem: IDespesa): void {
-    this.mostrarLoading = true;
-    this.lancamentoService.atualizarDespesa(elem).subscribe({
-      next: (response) => {
-        this.mostrarLoading = false;
-        const retorno = response.body;
-        if (retorno) {
-          Swal.fire(
-            'Sucesso',
-            retorno.mensagem,
-            'success'
-            );
-        }        
-      },
-      error: (err) => {
-        this.mostrarLoading = false;
-        Swal.fire(
-          'Erro na operação',
-          err.error.mensagem,
-          'warning'
-          );
-      }
-    })
-  }
 
-  private editarReceita(elem: IReceita): void {
-    this.mostrarLoading = true;
-    this.lancamentoService.atualizarReceita(elem).subscribe({
-      next: (response) => {
-        this.mostrarLoading = false;
-        const retorno = response.body;
-        if (retorno) {
-          Swal.fire(
-            'Sucesso',
-            retorno.mensagem,
-            'success'
-            );
-        }        
-      },
-      error: (err) => {
-        this.mostrarLoading = false;
-        Swal.fire(
-          'Erro na operação',
-          err.error.mensagem,
-          'warning'
-          );
-      }
-    })
-  }
+
+
 }

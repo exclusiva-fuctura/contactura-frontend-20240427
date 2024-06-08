@@ -7,4 +7,28 @@ import { Component } from '@angular/core';
 })
 export class ReceitasComponent {
 
+  // private editarReceita(elem: IReceita): void {
+  //   this.mostrarLoading = true;
+  //   this.lancamentoService.atualizarReceita(elem).subscribe({
+  //     next: (response) => {
+  //       this.mostrarLoading = false;
+  //       const retorno = response.body;
+  //       if (retorno) {
+  //         Swal.fire(
+  //           'Sucesso',
+  //           retorno.mensagem,
+  //           'success'
+  //           );
+  //       }        
+  //     },
+  //     error: (err) => {
+  //       this.mostrarLoading = false;
+  //       Swal.fire(
+  //         'Erro na operação',
+  //         err.error.mensagem,
+  //         'warning'
+  //         );
+  //     }
+  //   })
+  // }
 }
