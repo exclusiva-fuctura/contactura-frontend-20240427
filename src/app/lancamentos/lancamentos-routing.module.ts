@@ -5,8 +5,12 @@ import { ReceitasComponent } from './receitas/receitas.component';
 import { AutenticadorGuard } from '../shared/security/autenticador-guard';
 
 const routes: Routes = [
+  // rotas sem parametro
   {path: 'despesas', component: DespesasComponent},
-  {path: 'receitas', component: ReceitasComponent}
+  {path: 'receitas', component: ReceitasComponent},
+  // rotas com parametro id (bind variable)
+  {path: 'despesas/:id', component: DespesasComponent},
+  {path: 'receitas/:id', component: ReceitasComponent}
 ];
 
 @NgModule({

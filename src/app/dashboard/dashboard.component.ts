@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { MenuService } from '../shared/services/menu.service';
-import { MenuTypeEnum } from '../shared/enums/menu-type.enum';
-import { IReceita } from '../shared/models/receita.interface';
-import { LancamentoService } from '../shared/services/lancamento.service';
-import Swal from 'sweetalert2';
-import { IDespesa } from '../shared/models/despesa.interface';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+
+import Swal from 'sweetalert2';
+
+import { MenuService } from '../shared/services/menu.service';
+import { LancamentoService } from '../shared/services/lancamento.service';
+
+import { IReceita } from '../shared/models/receita.interface';
+import { IDespesa } from '../shared/models/despesa.interface';
+import { MenuTypeEnum } from '../shared/enums/menu-type.enum';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +18,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class DashboardComponent {
 
   dataSourceDespesas: IDespesa[] = [];
-  dataSourceReceitas: any[] = [];
+  dataSourceReceitas: IReceita[] = [];
   displayedColumns = ['data','valor','tipo','fixo','descricao','acoes'];
   
   mostrarLoading = false;
@@ -46,7 +48,7 @@ export class DashboardComponent {
     if(elemento.id) {
       this.lancamentoService.despesaSelecionada = elemento;
       this.lancamentoService.modoEdicao = true;
-      this.router.navigate(['lancamentos/despesas']);
+      this.router.navigate(['lancamentos/despesas/'+elemento.id]);
     }
   }
 
@@ -54,7 +56,7 @@ export class DashboardComponent {
     if(elemento.id) {
       this.lancamentoService.receitaSelecionada = elemento;
       this.lancamentoService.modoEdicao = true;
-      this.router.navigate(['lancamentos/receitas']);
+      this.router.navigate(['lancamentos/receitas/'+elemento.id]);
     }
   }
 

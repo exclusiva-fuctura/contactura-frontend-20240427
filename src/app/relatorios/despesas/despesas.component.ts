@@ -5,6 +5,8 @@ import { IDespesa } from 'src/app/shared/models/despesa.interface';
 import { LancamentoService } from 'src/app/shared/services/lancamento.service';
 import Swal from 'sweetalert2';
 import * as moment from 'moment';
+import { MenuService } from 'src/app/shared/services/menu.service';
+import { MenuTypeEnum } from 'src/app/shared/enums/menu-type.enum';
 
 @Component({
   selector: 'app-despesas',
@@ -21,9 +23,11 @@ export class DespesasComponent {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
+    private menuService: MenuService,
     private lancamentoService: LancamentoService
   ) {
     this.initFormulario();
+    this.menuService.ondeEstou = MenuTypeEnum.RELATORIO_DESPESA;
   }
 
   get valorTotal(): number {
@@ -49,7 +53,7 @@ export class DespesasComponent {
     if(elemento.id) {
       this.lancamentoService.despesaSelecionada = elemento;
       this.lancamentoService.modoEdicao = true;
-      this.router.navigate(['lancamentos/despesas']);
+      this.router.navigate(['lancamentos/despesas/'+elemento.id]);
     }
   }
 

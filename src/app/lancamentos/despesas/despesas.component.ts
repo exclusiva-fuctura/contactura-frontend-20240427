@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { MenuTypeEnum } from 'src/app/shared/enums/menu-type.enum';
 import { OperacaoTypeEnum } from 'src/app/shared/enums/operacao-type.enum';
@@ -20,8 +21,10 @@ export class DespesasComponent implements OnInit{
   mostrarLoading = false;
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private menuService: MenuService,
+    private activatedRoute: ActivatedRoute,
     private lancamentoService: LancamentoService,
   ) {  }
   
@@ -29,6 +32,11 @@ export class DespesasComponent implements OnInit{
     this.initForm();
 
     this.menuService.ondeEstou = MenuTypeEnum.LANCAMENTO_DESPESA;
+
+    // Se nao existir o ID(:id) na URL registro novo
+    if(!this.activatedRoute.snapshot.params['id']) {
+      this.lancamentoService.modoEdicao = false;
+    }
 
     if (this.lancamentoService.modoEdicao){
       const selecionado = this.lancamentoService.despesaSelecionada;
@@ -72,6 +80,11 @@ export class DespesasComponent implements OnInit{
       } else {
         this.criarDespesa(despesa);
       }
+    }
+
+    onNovo(): void {
+      this.lancamentoService.modoEdicao = false;
+      this.router.navigate(['lancamentos/despesas']);
     }
 
     private initForm(): void {

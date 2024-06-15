@@ -54,6 +54,10 @@
           <button mat-raised-button (click)="onLimpar()">Limpar</button>
           <button mat-raised-button color="primary" (click)="onSalvar()" [disabled]="formulario.invalid">{{buttonLabel}}</button>
         </mat-grid-tile>
+        <!-- linha 4 -->
+        <mat-grid-tile class="coluna botoes" colspan="3" *ngIf="buttonLabel === 'Editar'">          
+          <button mat-raised-button color="primary" (click)="onNovo()">Criar Despesa</button>
+        </mat-grid-tile>
       </mat-grid-list>
     </form>
 </div>
