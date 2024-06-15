@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AutenticadorGuard } from '../shared/security/autenticador-guard';
-import { AutenticadorService } from '../shared/services/autenticador.service';
 import { HttpStatusCode } from '@angular/common/http';
-import { UsuarioService } from '../shared/services/usuario.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import Swal from 'sweetalert2';
+
+import { AutenticadorService } from '../shared/services/autenticador.service';
+import { UsuarioService } from '../shared/services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -54,5 +55,9 @@ export class LoginComponent implements OnInit {
             );
         }
       });
+  }
+
+  onCadastro(): void {
+    this.router.navigate(['cadastro']);
   }
 }

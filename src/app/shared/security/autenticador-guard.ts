@@ -1,31 +1,26 @@
-import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
-// lib
+import { inject } from "@angular/core";
+import { CanActivateFn, Router } from "@angular/router";
+
 import Swal from "sweetalert2";
+
 import { UsuarioService } from "../services/usuario.service";
-// service
 
 
-@Injectable()
-export class AutenticadorGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private usuarioService: UsuarioService
-  ) { }
+export const autenticadorGuard: CanActivateFn = (route, state) => {
+    const router = inject(Router);
+    const usuarioService = inject(UsuarioService);
 
-  canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot ): boolean {
-    if (this.usuarioService.usuarioLogado) {
-      return true;
-    }
-
-    Swal.fire(
-    'Sessão Expirada',
-    'Favor realizar novo Login.',
-    'info'
-    );
-
-    this.router.navigate(['/login']);
-
-    return false;
-  }
-}
+    if (usuarioService.usuarioLogado) {
+        return true;
+      }
+  
+      Swal.fire(
+      'Sessão Expirada',
+      'Favor realizar novo Login.',
+      'info'
+      );
+  
+      router.navigate(['/login']);
+  
+      return false;
+};
