@@ -4,7 +4,10 @@
   
     <!-- logout -->
     <app-logout></app-logout>
-  
+
+    <!-- loading -->
+    <app-loading [show]="mostrarLoading"></app-loading>
+    
     <h1>CADASTRO DE DESPESAS</h1>
     <form [formGroup]="formulario" novalidate>
       <mat-grid-list cols="3" rowHeight="3:1">

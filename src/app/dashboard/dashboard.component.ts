@@ -6,6 +6,7 @@ import { LancamentoService } from '../shared/services/lancamento.service';
 import Swal from 'sweetalert2';
 import { IDespesa } from '../shared/models/despesa.interface';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  dataSourceDespesas: any[] = [];
+  dataSourceDespesas: IDespesa[] = [];
   dataSourceReceitas: any[] = [];
   displayedColumns = ['data','valor','tipo','fixo','descricao','acoes'];
   
@@ -26,6 +27,7 @@ export class DashboardComponent {
     private lancamentoService: LancamentoService
   ) {
     this.menuService.ondeEstou = MenuTypeEnum.DASHBOARD;
+    this.listarLancamentos();
   }
 
   onDeleteReceita(elemento: IReceita): void {
@@ -68,7 +70,8 @@ export class DashboardComponent {
             retorno.mensagem,
             'success'
             );
-        }        
+        }  
+        this.listarLancamentos();      
       },
       error: (err) => {
         this.mostrarLoading = false;
@@ -94,6 +97,7 @@ export class DashboardComponent {
             'success'
             );
         }        
+        this.listarLancamentos();
       },
       error: (err) => {
         this.mostrarLoading = false;
@@ -104,6 +108,20 @@ export class DashboardComponent {
           );
       }
     })
+  }
+
+  private listarLancamentos(): void {
+    this.lancamentoService.listaLancamentos().subscribe({
+      next: (resp) => {
+        const listaLancamentos = resp.body;
+        this.dataSourceDespesas = listaLancamentos?.filter((lanc) => lanc.ehReceita === false) || [];
+        this.dataSourceReceitas = listaLancamentos?.filter((lanc) => lanc.ehReceita === true) || [];
+      },
+      error: () => {
+        this.dataSourceDespesas = [];
+        this.dataSourceReceitas = [];
+      }
+    });
   }
   
 
